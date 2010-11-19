@@ -47,8 +47,8 @@ def compute_projection_frobenius_norm(U_s_Vh_list_X, U_s_Vh_list_Y):
             W_X = U_X
             W_Y = W_X
         else:
-            W_Y = Vh_X.T
-            W_X = Vh_Y.T
+            W_X = Vh_X.T
+            W_Y = Vh_Y.T
         projection_frobenius_norm += np.linalg.norm(np.dot(W_X,W_X.T)-np.dot(W_Y,W_Y.T) , ord='fro')
     return projection_frobenius_norm
 
