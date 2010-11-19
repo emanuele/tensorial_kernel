@@ -69,7 +69,7 @@ def compute_projection_frobenius_norm_train(X):
     for i in range(X.shape[0]):
         for j in range(i+1, X.shape[0]):
             projection_frobenius_norm[i,j] += compute_projection_frobenius_norm(U_s_Vh_list_list[i], U_s_Vh_list_list[j])
-    # copy diag sup on dig inf
+    # copy upper diag on lower diag because matrix must be symmetric
     projection_frobenius_norm += projection_frobenius_norm.T
     return projection_frobenius_norm
 
