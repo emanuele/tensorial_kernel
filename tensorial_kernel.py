@@ -105,7 +105,7 @@ def compute_tensorial_kernel(X, Y=None, sigma2=1.0):
         projection_frobenius_norm_matrix = compute_projection_frobenius_norm_train(X)
     else:
         projection_frobenius_norm_matrix = compute_projection_frobenius_norm_test(X, Y)
-    return np.exp(-1.0/sigma2 * projection_frobenius_norm_matrix)
+    return np.exp(-1.0/sigma2 * projection_frobenius_norm_matrix*projection_frobenius_norm_matrix)
 
                     
 if __name__=='__main__':
