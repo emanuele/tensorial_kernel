@@ -18,20 +18,20 @@ Based on:
 import numpy as np
 
 
-def unfold(A):
-    """Unfold tensor A along first axis.
+def unfold(A, mode=0):
+    """Unfold tensor A along 'mode' axis.
     """
+    assert(mode < len(A.shape))
+    A = A.swapaxes(0,mode) # swap first and mode-th axis to prepare tensor for mode-'mode' unfolding
     return A.reshape(A.shape[0], np.prod(A.shape[1:]))
 
 
 def multilinear_SVD(A):
     """Compute multilinear SVD.
     """
-    # assert(len(A.shape)<=3) # No-one worked out unfolding for higher that 3 dim, it should work but... TEST!
     U_s_Vh_list = []
     for i in range(len(A.shape)):
-        B = A.swapaxes(0,i) # swap first and i-th axis to prepare tensor for mode-i unfolding
-        B = unfold(B)
+        B = unfold(A, mode=i)
         U_s_Vh_list.append(np.linalg.linalg.svd(B, full_matrices=False))
     return U_s_Vh_list
 
