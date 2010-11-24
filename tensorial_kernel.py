@@ -110,21 +110,22 @@ def compute_tensorial_kernel(X, Y=None, sigma2=1.0):
                     
 if __name__=='__main__':
 
-    D = [5,4,3,2]
-    D_X = [10] + D
+    D = [4,3,2]
+    D_X = [5] + D
     X = np.arange(np.prod(D_X)).reshape(*D_X)
-    D_Y = [5] + D
+    D_Y = [6] + D
     Y = np.arange(np.prod(D_Y)).reshape(*D_Y) + 1
 
     print "X[0]:"
     print X[0]
     print "shape:", X[0].shape
     print
-    print "Unfolding X[0] (mode-0):"
-    tmp = unfold(X[0])
-    print tmp
-    print "shape:", tmp.shape
-    print
+    for i in range(len(X[0].shape)):
+        print "Unfolding X[0] (mode-%i):" % i
+        tmp = unfold(X[0], mode=i)
+        print tmp
+        print "shape:", tmp.shape
+        print
     print "Multilinear SVD of X[0]:"
     mlSVD = multilinear_SVD(X[0])
     print mlSVD
