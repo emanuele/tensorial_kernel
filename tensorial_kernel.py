@@ -79,9 +79,9 @@ def compute_projection_frobenius_norm_test(X, Y):
     pairs of tensors within trainset X and testset Y.
 
     X = trainset, one example (tensor) per row.
-    X = testset.
+    Y = testset.
     """
-    # Pre-compute the list of SVD decomposition for each element of
+    # Pre-compute the list of SVD decompositions for each element of
     # the training set. The result is stored into a list of lists.
     U_s_Vh_list_list_X = []
     for i in range(X.shape[0]):
